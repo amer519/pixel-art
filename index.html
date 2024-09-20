@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create your own pixel art using our simple pixel grid. Download and share your art easily.">
+    <meta name="keywords" content="Pixel Art Creator, online pixel drawing, pixel art, drawing grid, art generator">
+    <title>Pixel Art Creator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Pixel Art Creator</h1>
+
+    <div id="controls">
+        <input type="color" id="colorPicker" class="color-picker" value="#000000">
+        <label for="colorPicker">Pick a Color</label>
+        <button id="reset-btn">Reset</button>
+    </div>
+
+    <div id="grid"></div>
+
+    <button id="download-btn">Download Art</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+
+    
+    <script>
+        const gridSize = 16;
+        const grid = document.getElementById("grid");
+        let currentColor = document.getElementById("colorPicker").value;
+
+        // Generate the grid
+        for (let i = 0; i < gridSize * gridSize; i++) {
+            const pixel = document.createElement("div");
+            pixel.classList.add("pixel");
+            grid.appendChild(pixel);
+
+            pixel.addEventListener("click", function() {
+                pixel.style.backgroundColor = currentColor;
+            });
+        }
+
+        // Update the current color
+        document.getElementById("colorPicker").addEventListener("input", function() {
+            currentColor = this.value;
+        });
+
+        // Reset grid
+        document.getElementById("reset-btn").addEventListener("click", function() {
+            const pixels = document.querySelectorAll(".pixel");
+            pixels.forEach(pixel => pixel.style.backgroundColor = "white");
+        });
+
+        // Download pixel art
+        document.getElementById("download-btn").addEventListener("click", function() {
+            html2canvas(document.querySelector("#grid")).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'pixel-art.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        });
+    </script>
+
+</body>
+</html>

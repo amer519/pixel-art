@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(16, 20px);  /* Creates 16 columns, 20px each */
+    grid-template-rows: repeat(16, 20px);     /* Creates 16 rows, 20px each */
+    margin: 20px auto;  /* Centers the grid horizontally */
+    gap: 1px;
+    width: calc(16 * 20px + 15px);  /* Adjust width based on grid size and gap */
+}
+
+
+.pixel {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+#controls {
+    margin-bottom: 20px;
+}
+
+.color-picker {
+    margin: 5px;
+}
+
+#download-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#download-btn:hover {
+    background-color: #45a049;
+}
+
